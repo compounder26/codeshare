@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define SIZE 10
+
+struct Animal{
+    char name[50];
+}*cage[SIZE];
+
+struct Animal *create(char name[]){
+    struct Animal* new_animal = (struct Animal*)malloc(sizeof(struct Animal));
+    strcpy(new_animal->name, name);
+    return new_animal;
+}
+
+
+int count = 0;
+
+int hash(char name[]){
+    int key = 0;
+    int len = strlen(name);
+    for(int i = 0; i < len ; i++){
+        key += name[i];
+    }
+    return key % SIZE;
+}
+
+void insert(char name[]){
+    int hashKey = hash(name);
+    int position = hashKey;
+
+    if(count >= SIZE){
+        printf("cage is full");
+    }
+
+    while(cage[position] != NULL){
+        position = (position + 1) % SIZE;
+    }
+}
+
+int main(){
+    printf("%d\n" ,hash("Ayam"));
+    printf("%d\n" ,hash("Bebek"));
+
+    return 0;
+}
