@@ -36,6 +36,20 @@ void insert(char name[]){
     while(cage[position] != NULL){
         position = (position + 1) % SIZE;
     }
+    
+    cage[position] = create(name);
+    count++;
+}
+
+void view(){
+    for(int i = 0; i < SIZE; i++){
+        if(cage[i] == NULL){
+            printf("%d. \n", i);
+        }
+        else if(cage[i] != NULL){
+            printf("%d. %-8s [%d]", i, cage[i]->name, hash(cage[i]->name))
+        }
+    }
 }
 
 int main(){
